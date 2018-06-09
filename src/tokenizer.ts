@@ -1,8 +1,4 @@
 // Helper types
-interface Token {
-  type: 'paren' | 'number' | 'name'
-  value: string
-}
 
 const tokenizer = (input: string) => {
   let pos = 0
