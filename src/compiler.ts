@@ -40,6 +40,7 @@ const tokenizer = (input: string) => {
     const numberRe = /[0-9]/
     if (numberRe.test(ch)) {
       let val = ''
+
       while (numberRe.test(ch)) {
         val += ch
         ch = input[++pos]
@@ -57,7 +58,7 @@ const tokenizer = (input: string) => {
     if (lettersRe.test(ch)) {
       let val = ''
 
-      while (lettersRe.test(ch)) {
+      while (ch !== undefined && lettersRe.test(ch)) {
         val += ch
         ch = input[++pos]
       }
@@ -66,6 +67,8 @@ const tokenizer = (input: string) => {
         type: 'name',
         value: val,
       })
+
+      continue
     }
 
     throw new TypeError(`Unknown character: ${ch}`)
@@ -74,6 +77,6 @@ const tokenizer = (input: string) => {
   return tokens
 }
 
-module.exports = {
+export default {
   tokenizer,
 }
