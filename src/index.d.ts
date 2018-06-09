@@ -12,3 +12,26 @@ interface Token {
   type: 'paren' | 'number' | 'name'
   value: string
 }
+
+interface NumberNode {
+  type: 'NumberLiteral'
+  value: string
+}
+
+interface SymbolNode {
+  type: 'SymbolLiteral'
+  value: string
+}
+
+interface CallNode {
+  type: 'CallExpression'
+  name: string
+  params: ASTNode[]
+}
+
+type ASTNode = NumberNode | SymbolNode | CallNode
+
+interface ProgramNode {
+  type: 'Program'
+  body: ASTNode[]
+}
