@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`tokenizes a list 1`] = `
+Array [
+  Object {
+    "type": "paren",
+    "value": "(",
+  },
+  Object {
+    "type": "number",
+    "value": "123",
+  },
+  Object {
+    "type": "name",
+    "value": "foo",
+  },
+  Object {
+    "type": "paren",
+    "value": "(",
+  },
+  Object {
+    "type": "name",
+    "value": "bar",
+  },
+  Object {
+    "type": "name",
+    "value": "baz",
+  },
+  Object {
+    "type": "paren",
+    "value": ")",
+  },
+  Object {
+    "type": "paren",
+    "value": ")",
+  },
+]
+`;
+
+exports[`tokenizes names 1`] = `
+Array [
+  Object {
+    "type": "name",
+    "value": "foo",
+  },
+]
+`;
+
+exports[`tokenizes number 1`] = `
+Array [
+  Object {
+    "type": "number",
+    "value": "123",
+  },
+]
+`;
+
+exports[`tokenizes parens 1`] = `
+Array [
+  Object {
+    "type": "paren",
+    "value": "(",
+  },
+  Object {
+    "type": "paren",
+    "value": ")",
+  },
+]
+`;

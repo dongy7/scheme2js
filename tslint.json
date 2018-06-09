@@ -10,7 +10,8 @@
             "single"
         ],
         "semicolon": false,
-        "no-console": false
+        "no-console": false,
+        "interface-name": false
     },
     "rulesDirectory": []
 }
