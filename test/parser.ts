@@ -18,6 +18,12 @@ it('parses nested function call', () => {
   expect(parser.parse()).toMatchSnapshot()
 })
 
+it('parses expr with operator', () => {
+  const tokens = Compiler.tokenizer('(+ 1 (- 2 3))')
+  const parser = new Compiler.parser(tokens)
+  expect(parser.parse()).toMatchSnapshot()
+})
+
 it('parses define expression', () => {
   const tokens = Compiler.tokenizer('(define a 1)')
   const parser = new Compiler.parser(tokens)

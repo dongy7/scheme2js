@@ -4,6 +4,10 @@ it('tokenizes number', () => {
   expect(Compiler.tokenizer('123')).toMatchSnapshot()
 })
 
+it('tokenizes negative number', () => {
+  expect(Compiler.tokenizer('-123')).toMatchSnapshot()
+})
+
 it('tokenizes parens', () => {
   expect(Compiler.tokenizer('()')).toMatchSnapshot()
 })

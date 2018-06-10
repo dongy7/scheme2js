@@ -26,6 +26,44 @@ Object {
 }
 `;
 
+exports[`parses expr with operator 1`] = `
+Object {
+  "body": Array [
+    Object {
+      "params": Array [
+        Object {
+          "type": "NumberLiteral",
+          "value": "1",
+        },
+        Object {
+          "params": Array [
+            Object {
+              "type": "NumberLiteral",
+              "value": "2",
+            },
+            Object {
+              "type": "NumberLiteral",
+              "value": "3",
+            },
+          ],
+          "proc": Object {
+            "type": "SymbolLiteral",
+            "value": "-",
+          },
+          "type": "CallExpression",
+        },
+      ],
+      "proc": Object {
+        "type": "SymbolLiteral",
+        "value": "+",
+      },
+      "type": "CallExpression",
+    },
+  ],
+  "type": "Program",
+}
+`;
+
 exports[`parses function call 1`] = `
 Object {
   "body": Array [

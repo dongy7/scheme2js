@@ -99,6 +99,8 @@ class Parser {
 
             return callExpr
         }
+      default:
+        throw new SyntaxError()
     }
   }
 

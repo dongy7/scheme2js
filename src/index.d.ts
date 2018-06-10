@@ -9,7 +9,7 @@ interface Env {
 }
 
 interface Token {
-  type: 'paren' | 'number' | 'name'
+  type: 'paren' | 'number' | 'name' | 'op'
   value: string
 }
 
@@ -25,6 +25,11 @@ interface NumberNode extends INode {
 
 interface SymbolNode extends INode {
   type: 'SymbolLiteral'
+  value: string
+}
+
+interface OpNode extends INode {
+  type: 'Operator'
   value: string
 }
 
@@ -51,6 +56,13 @@ interface IfExpr extends INode {
   test: ASTNode
   conseq: ASTNode
   alt: ASTNode
+}
+
+interface BinExpr extends INode {
+  type: 'BinExpr'
+  left: Expression
+  op: OpNode
+  right: Expression
 }
 
 type Expression = CallExpr | DefineExpr | IfExpr | SymbolNode | NumberNode
