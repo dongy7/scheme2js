@@ -1,48 +1,31 @@
-import Compiler from '../src/compiler'
-import js from '../src/visitors/js'
-import transformer from '../src/transformer'
+import compile from '../src'
 
 it('Generates function call', () => {
-  const tokens = Compiler.tokenizer('(add 1 (sub 2 3))')
-  const parser = new Compiler.parser(tokens)
-  const ast = parser.parse()
-  expect(Compiler.codeGenerator(ast)).toMatchSnapshot()
+  const code = '(add 1 (sub 2 3))'
+  expect(compile(code)).toMatchSnapshot()
 })
 
 it('Generates variable declaration', () => {
-  const tokens = Compiler.tokenizer('(define a 1)')
-  const parser = new Compiler.parser(tokens)
-  const ast = parser.parse()
-  expect(Compiler.codeGenerator(ast)).toMatchSnapshot()
+  const code = '(define a 1)'
+  expect(compile(code)).toMatchSnapshot()
 })
 
 it('Generates if expressions', () => {
-  const tokens = Compiler.tokenizer('(if (eq 1 2) 3 4)')
-  const parser = new Compiler.parser(tokens)
-  const ast = parser.parse()
-  expect(Compiler.codeGenerator(ast)).toMatchSnapshot()
+  const code = '(if (eq 1 2) 3 4)'
+  expect(compile(code)).toMatchSnapshot()
 })
 
 it('Generates correct binary expression', () => {
-  const tokens = Compiler.tokenizer('(+ 1 2)')
-  const parser = new Compiler.parser(tokens)
-  const ast = parser.parse()
-  const jsAst = Compiler.transformer(ast, js)
-  expect(Compiler.codeGenerator(jsAst)).toMatchSnapshot()
+  const code = '(+ 1 2)'
+  expect(compile(code)).toMatchSnapshot()
 })
 
 it('Generates correct anonymous function expression', () => {
-  const tokens = Compiler.tokenizer('(lambda (x y) (+ x y))')
-  const parser = new Compiler.parser(tokens)
-  const ast = parser.parse()
-  const jsAst = Compiler.transformer(ast, js)
-  expect(Compiler.codeGenerator(jsAst)).toMatchSnapshot()
+  const code = '(lambda (x y) (+ x y))'
+  expect(compile(code)).toMatchSnapshot()
 })
 
 it('Generates correct anonymous function definition', () => {
-  const tokens = Compiler.tokenizer('(define add (lambda (x y) (+ x y)))')
-  const parser = new Compiler.parser(tokens)
-  const ast = parser.parse()
-  const jsAst = Compiler.transformer(ast, js)
-  expect(Compiler.codeGenerator(jsAst)).toMatchSnapshot()
+  const code = '(define add (lambda (x y) (+ x y)))'
+  expect(compile(code)).toMatchSnapshot()
 })
