@@ -99,6 +99,36 @@ Program {
 }
 `;
 
+exports[`parses lambda expressions 1`] = `
+Program {
+  "body": Array [
+    LambdaExpression {
+      "body": CallExpression {
+        "params": Array [
+          SymbolLiteral {
+            "value": "x",
+          },
+          SymbolLiteral {
+            "value": "y",
+          },
+        ],
+        "proc": SymbolLiteral {
+          "value": "+",
+        },
+      },
+      "params": Array [
+        SymbolLiteral {
+          "value": "x",
+        },
+        SymbolLiteral {
+          "value": "y",
+        },
+      ],
+    },
+  ],
+}
+`;
+
 exports[`parses nested function call 1`] = `
 Program {
   "body": Array [

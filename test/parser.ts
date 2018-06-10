@@ -41,3 +41,9 @@ it('parses nested if expression', () => {
   const parser = new Compiler.parser(tokens)
   expect(parser.parse()).toMatchSnapshot()
 })
+
+it('parses lambda expressions', () => {
+  const tokens = Compiler.tokenizer('(lambda (x y) (+ x y))')
+  const parser = new Compiler.parser(tokens)
+  expect(parser.parse()).toMatchSnapshot()
+})

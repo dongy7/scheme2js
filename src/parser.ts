@@ -5,6 +5,7 @@ import SymbolLiteral from './ast/SymbolLiteral'
 import DefineExpression from './ast/DefineExpression'
 import IfExpression from './ast/IfExpression'
 import CallExpression from './ast/CallExpression'
+import LambdaExpression from './ast/LambdaExpression'
 
 class Parser {
   private tokens: Token[]
@@ -61,6 +62,11 @@ class Parser {
             const alt = this.parseExpr()
             this.accept('paren')
             return new IfExpression(test, conseq, alt)
+          case 'lambda':
+            this.acceptIt()
+            const params = this.parseParams()
+            const body = this.parseExpr()
+            return new LambdaExpression(params, body)
           default:
             const id = this.parseSymbol()
             const callExpr = new CallExpression(id)
@@ -92,6 +98,22 @@ class Parser {
       default:
         throw new SyntaxError()
     }
+  }
+
+  private parseParams(): SymbolLiteral[] {
+    // accept (
+    this.acceptIt()
+    const params = []
+    while (
+      this.currToken.type !== 'paren' ||
+      (this.currToken.type === 'paren' && this.currToken.value !== ')')
+    ) {
+      params.push(this.parseSymbol())
+    }
+
+    // accept )
+    this.acceptIt()
+    return params
   }
 
   private parseSymbol(): SymbolLiteral {

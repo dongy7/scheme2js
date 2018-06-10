@@ -64,7 +64,18 @@ interface BinExpr extends AST {
   right: ASTNode
 }
 
-type Expression = CallExpr | DefineExpr | IfExpr | SymbolNode | NumberNode
+interface LambdaExpr extends AST {
+  params: ASTNode[]
+  body: ASTNode
+}
+
+type Expression =
+  | CallExpr
+  | DefineExpr
+  | IfExpr
+  | SymbolNode
+  | NumberNode
+  | LambdaExpr
 
 type ASTNode =
   | NumberNode
@@ -74,3 +85,4 @@ type ASTNode =
   | DefineExpr
   | IfExpr
   | BinExpr
+  | LambdaExpr
