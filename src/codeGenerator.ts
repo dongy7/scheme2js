@@ -11,7 +11,9 @@ const codeGenerator = (node: ASTNode): string => {
     case 'NumberLiteral':
       return node.value
     case 'DefineExpr':
-      return codeGenerator(node.ref) + ' = ' + codeGenerator(node.value)
+      return (
+        'var ' + codeGenerator(node.ref) + ' = ' + codeGenerator(node.value)
+      )
     case 'IfExpr':
       return (
         codeGenerator(node.test) +
