@@ -1,3 +1,11 @@
+import * as ast from './ast'
+import Program from './ast/Program'
+import NumericLiteral from './ast/NumericLiteral'
+import SymbolLiteral from './ast/SymbolLiteral'
+import DefineExpression from './ast/DefineExpression'
+import IfExpression from './ast/IfExpression'
+import CallExpression from './ast/CallExpression'
+
 class Parser {
   private tokens: Token[]
   private currToken: Token
@@ -8,18 +16,13 @@ class Parser {
     this.currToken = this.tokens[this.pos]
   }
 
-  public parse(): ProgramNode {
+  public parse(): Program {
     return this.parseProgram()
   }
 
-  private parseProgram(): ProgramNode {
-    const program: ProgramNode = {
-      type: 'Program',
-      body: [],
-    }
-
+  private parseProgram(): Program {
+    const program = new Program()
     program.body = this.parseExprList()
-
     return program
   }
 
@@ -50,30 +53,17 @@ class Parser {
             const symbol = this.parseSymbol()
             const expr = this.parseExpr()
             this.accept('paren')
-            return {
-              type: 'DefineExpr',
-              ref: symbol,
-              value: expr,
-            }
+            return new DefineExpression(symbol, expr)
           case 'if':
             this.acceptIt()
             const test = this.parseExpr()
             const conseq = this.parseExpr()
             const alt = this.parseExpr()
             this.accept('paren')
-            return {
-              type: 'IfExpr',
-              test,
-              conseq,
-              alt,
-            }
+            return new IfExpression(test, conseq, alt)
           default:
             const id = this.parseSymbol()
-            const callExpr: CallExpr = {
-              type: 'CallExpression',
-              proc: id,
-              params: [],
-            }
+            const callExpr = new CallExpression(id)
 
             while (
               this.currToken.type !== 'paren' ||
@@ -104,21 +94,15 @@ class Parser {
     }
   }
 
-  private parseSymbol(): SymbolNode {
-    const symbol: SymbolNode = {
-      type: 'SymbolLiteral',
-      value: this.currToken.value,
-    }
+  private parseSymbol(): SymbolLiteral {
+    const symbol = new SymbolLiteral(this.currToken.value)
 
     this.acceptIt()
     return symbol
   }
 
-  private parseNumber(): NumberNode {
-    const num: NumberNode = {
-      type: 'NumberLiteral',
-      value: this.currToken.value,
-    }
+  private parseNumber(): NumericLiteral {
+    const num = new NumericLiteral(this.currToken.value)
 
     this.acceptIt()
     return num

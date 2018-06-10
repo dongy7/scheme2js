@@ -13,55 +13,54 @@ interface Token {
   value: string
 }
 
-interface INode {
-  name?: string
-  context?: ASTNode[]
+interface Visitor {
+  visitNumericLiteral(node: NumberNode): ASTNode
+  visitSymbolLiteral(node: SymbolNode): ASTNode
+  visitCallExpression(node: CallExpr): ASTNode
+  visitProgram(node: ProgramNode): ASTNode
+  visitDefineExpression(node: DefineExpr): ASTNode
+  visitIfExpression(node: IfExpr): ASTNode
 }
 
-interface NumberNode extends INode {
-  type: 'NumberLiteral'
+interface AST {
+  visit(v: Visitor): ASTNode
+}
+
+interface NumberNode extends AST {
   value: string
 }
 
-interface SymbolNode extends INode {
-  type: 'SymbolLiteral'
+interface SymbolNode extends AST {
   value: string
 }
 
-interface OpNode extends INode {
-  type: 'Operator'
+interface OpNode extends AST {
   value: string
 }
 
-interface CallExpr extends INode {
-  type: 'CallExpression'
-  // name: string
+interface CallExpr extends AST {
   proc: SymbolNode
   params: ASTNode[]
 }
 
-interface ProgramNode extends INode {
-  type: 'Program'
+interface ProgramNode extends AST {
   body: ASTNode[]
 }
 
-interface DefineExpr extends INode {
-  type: 'DefineExpr'
+interface DefineExpr extends AST {
   ref: SymbolNode
   value: ASTNode
 }
 
-interface IfExpr extends INode {
-  type: 'IfExpr'
+interface IfExpr extends AST {
   test: ASTNode
   conseq: ASTNode
   alt: ASTNode
 }
 
-interface BinExpr extends INode {
-  type: 'BinExpr'
+interface BinExpr extends AST {
   left: Expression
-  op: OpNode
+  op: SymbolNode
   right: Expression
 }
 
@@ -74,12 +73,4 @@ type ASTNode =
   | ProgramNode
   | DefineExpr
   | IfExpr
-
-interface Visitor {
-  enter: (INode: ASTNode, parent: ASTNode | null) => void
-  exit?: (INode: ASTNode, parent: ASTNode | null) => void
-}
-
-interface Visitors {
-  [type: string]: Visitor
-}
+  | BinExpr

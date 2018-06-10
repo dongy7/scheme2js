@@ -1,213 +1,168 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`parses define expression 1`] = `
-Object {
+Program {
   "body": Array [
-    Object {
-      "ref": Object {
-        "type": "SymbolLiteral",
+    DefineExpression {
+      "ref": SymbolLiteral {
         "value": "a",
       },
-      "type": "DefineExpr",
-      "value": Object {
-        "type": "NumberLiteral",
+      "value": NumericLiteral {
         "value": "1",
       },
     },
   ],
-  "type": "Program",
 }
 `;
 
 exports[`parses empty program 1`] = `
-Object {
+Program {
   "body": Array [],
-  "type": "Program",
 }
 `;
 
 exports[`parses expr with operator 1`] = `
-Object {
+Program {
   "body": Array [
-    Object {
+    CallExpression {
       "params": Array [
-        Object {
-          "type": "NumberLiteral",
+        NumericLiteral {
           "value": "1",
         },
-        Object {
+        CallExpression {
           "params": Array [
-            Object {
-              "type": "NumberLiteral",
+            NumericLiteral {
               "value": "2",
             },
-            Object {
-              "type": "NumberLiteral",
+            NumericLiteral {
               "value": "3",
             },
           ],
-          "proc": Object {
-            "type": "SymbolLiteral",
+          "proc": SymbolLiteral {
             "value": "-",
           },
-          "type": "CallExpression",
         },
       ],
-      "proc": Object {
-        "type": "SymbolLiteral",
+      "proc": SymbolLiteral {
         "value": "+",
       },
-      "type": "CallExpression",
     },
   ],
-  "type": "Program",
 }
 `;
 
 exports[`parses function call 1`] = `
-Object {
+Program {
   "body": Array [
-    Object {
+    CallExpression {
       "params": Array [
-        Object {
-          "type": "NumberLiteral",
+        NumericLiteral {
           "value": "1",
         },
-        Object {
-          "type": "NumberLiteral",
+        NumericLiteral {
           "value": "2",
         },
       ],
-      "proc": Object {
-        "type": "SymbolLiteral",
+      "proc": SymbolLiteral {
         "value": "add",
       },
-      "type": "CallExpression",
     },
   ],
-  "type": "Program",
 }
 `;
 
 exports[`parses if expression 1`] = `
-Object {
+Program {
   "body": Array [
-    Object {
-      "alt": Object {
-        "type": "NumberLiteral",
+    IfExpression {
+      "alt": NumericLiteral {
         "value": "4",
       },
-      "conseq": Object {
-        "type": "NumberLiteral",
+      "conseq": NumericLiteral {
         "value": "3",
       },
-      "test": Object {
+      "test": CallExpression {
         "params": Array [
-          Object {
-            "type": "NumberLiteral",
+          NumericLiteral {
             "value": "1",
           },
-          Object {
-            "type": "NumberLiteral",
+          NumericLiteral {
             "value": "2",
           },
         ],
-        "proc": Object {
-          "type": "SymbolLiteral",
+        "proc": SymbolLiteral {
           "value": "eq",
         },
-        "type": "CallExpression",
       },
-      "type": "IfExpr",
     },
   ],
-  "type": "Program",
 }
 `;
 
 exports[`parses nested function call 1`] = `
-Object {
+Program {
   "body": Array [
-    Object {
+    CallExpression {
       "params": Array [
-        Object {
-          "type": "NumberLiteral",
+        NumericLiteral {
           "value": "1",
         },
-        Object {
+        CallExpression {
           "params": Array [
-            Object {
-              "type": "NumberLiteral",
+            NumericLiteral {
               "value": "2",
             },
-            Object {
-              "type": "NumberLiteral",
+            NumericLiteral {
               "value": "3",
             },
           ],
-          "proc": Object {
-            "type": "SymbolLiteral",
+          "proc": SymbolLiteral {
             "value": "sub",
           },
-          "type": "CallExpression",
         },
       ],
-      "proc": Object {
-        "type": "SymbolLiteral",
+      "proc": SymbolLiteral {
         "value": "add",
       },
-      "type": "CallExpression",
     },
   ],
-  "type": "Program",
 }
 `;
 
 exports[`parses nested if expression 1`] = `
-Object {
+Program {
   "body": Array [
-    Object {
-      "alt": Object {
-        "type": "NumberLiteral",
+    IfExpression {
+      "alt": NumericLiteral {
         "value": "6",
       },
-      "conseq": Object {
+      "conseq": CallExpression {
         "params": Array [
-          Object {
-            "type": "NumberLiteral",
+          NumericLiteral {
             "value": "4",
           },
-          Object {
-            "type": "NumberLiteral",
+          NumericLiteral {
             "value": "5",
           },
         ],
-        "proc": Object {
-          "type": "SymbolLiteral",
+        "proc": SymbolLiteral {
           "value": "add",
         },
-        "type": "CallExpression",
       },
-      "test": Object {
+      "test": CallExpression {
         "params": Array [
-          Object {
-            "type": "NumberLiteral",
+          NumericLiteral {
             "value": "1",
           },
-          Object {
-            "type": "NumberLiteral",
+          NumericLiteral {
             "value": "2",
           },
         ],
-        "proc": Object {
-          "type": "SymbolLiteral",
+        "proc": SymbolLiteral {
           "value": "eq",
         },
-        "type": "CallExpression",
       },
-      "type": "IfExpr",
     },
   ],
-  "type": "Program",
 }
 `;
