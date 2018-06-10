@@ -23,3 +23,15 @@ it('parses define expression', () => {
   const parser = new Compiler.parser(tokens)
   expect(parser.parse()).toMatchSnapshot()
 })
+
+it('parses if expression', () => {
+  const tokens = Compiler.tokenizer('(if (eq 1 2) 3 4)')
+  const parser = new Compiler.parser(tokens)
+  expect(parser.parse()).toMatchSnapshot()
+})
+
+it('parses nested if expression', () => {
+  const tokens = Compiler.tokenizer('(if (eq 1 2) (add 4 5) 6)')
+  const parser = new Compiler.parser(tokens)
+  expect(parser.parse()).toMatchSnapshot()
+})

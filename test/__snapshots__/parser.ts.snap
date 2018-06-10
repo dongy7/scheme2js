@@ -51,6 +51,42 @@ Object {
 }
 `;
 
+exports[`parses if expression 1`] = `
+Object {
+  "body": Array [
+    Object {
+      "alt": Object {
+        "type": "NumberLiteral",
+        "value": "4",
+      },
+      "conseq": Object {
+        "type": "NumberLiteral",
+        "value": "3",
+      },
+      "test": Object {
+        "params": Array [
+          Object {
+            "type": "NumberLiteral",
+            "value": "1",
+          },
+          Object {
+            "type": "NumberLiteral",
+            "value": "2",
+          },
+        ],
+        "proc": Object {
+          "type": "SymbolLiteral",
+          "value": "eq",
+        },
+        "type": "CallExpression",
+      },
+      "type": "IfExpr",
+    },
+  ],
+  "type": "Program",
+}
+`;
+
 exports[`parses nested function call 1`] = `
 Object {
   "body": Array [
@@ -83,6 +119,55 @@ Object {
         "value": "add",
       },
       "type": "CallExpression",
+    },
+  ],
+  "type": "Program",
+}
+`;
+
+exports[`parses nested if expression 1`] = `
+Object {
+  "body": Array [
+    Object {
+      "alt": Object {
+        "type": "NumberLiteral",
+        "value": "6",
+      },
+      "conseq": Object {
+        "params": Array [
+          Object {
+            "type": "NumberLiteral",
+            "value": "4",
+          },
+          Object {
+            "type": "NumberLiteral",
+            "value": "5",
+          },
+        ],
+        "proc": Object {
+          "type": "SymbolLiteral",
+          "value": "add",
+        },
+        "type": "CallExpression",
+      },
+      "test": Object {
+        "params": Array [
+          Object {
+            "type": "NumberLiteral",
+            "value": "1",
+          },
+          Object {
+            "type": "NumberLiteral",
+            "value": "2",
+          },
+        ],
+        "proc": Object {
+          "type": "SymbolLiteral",
+          "value": "eq",
+        },
+        "type": "CallExpression",
+      },
+      "type": "IfExpr",
     },
   ],
   "type": "Program",
