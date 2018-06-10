@@ -1,4 +1,6 @@
 import Compiler from '../src/compiler'
+import js from '../src/visitors/js'
+import transformer from '../src/transformer'
 
 it('Generates function call', () => {
   const tokens = Compiler.tokenizer('(add 1 (sub 2 3))')
@@ -19,4 +21,12 @@ it('Generates if expressions', () => {
   const parser = new Compiler.parser(tokens)
   const ast = parser.parse()
   expect(Compiler.codeGenerator(ast)).toMatchSnapshot()
+})
+
+it('Generates correct binary expression', () => {
+  const tokens = Compiler.tokenizer('(+ 1 2)')
+  const parser = new Compiler.parser(tokens)
+  const ast = parser.parse()
+  const jsAst = Compiler.transformer(ast, js)
+  expect(Compiler.codeGenerator(jsAst)).toMatchSnapshot()
 })

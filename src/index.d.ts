@@ -59,9 +59,9 @@ interface IfExpr extends AST {
 }
 
 interface BinExpr extends AST {
-  left: Expression
+  left: ASTNode
   op: SymbolNode
-  right: Expression
+  right: ASTNode
 }
 
 type Expression = CallExpr | DefineExpr | IfExpr | SymbolNode | NumberNode

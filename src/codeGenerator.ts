@@ -5,6 +5,7 @@ import DefineExpression from './ast/DefineExpression'
 import IfExpression from './ast/IfExpression'
 import NumericLiteral from './ast/NumericLiteral'
 import SymbolLiteral from './ast/SymbolLiteral'
+import BinaryExpression from './ast/BinaryExpression'
 
 const codeGenerator = (node: ASTNode): string => {
   if (node instanceof Program) {
@@ -27,6 +28,14 @@ const codeGenerator = (node: ASTNode): string => {
     return node.value
   } else if (node instanceof SymbolLiteral) {
     return node.value
+  } else if (node instanceof BinaryExpression) {
+    return (
+      codeGenerator(node.left) +
+      ' ' +
+      codeGenerator(node.op) +
+      ' ' +
+      codeGenerator(node.right)
+    )
   } else {
     throw new TypeError()
   }

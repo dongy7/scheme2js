@@ -1,5 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Generates correct binary expression 1`] = `"1 + 2"`;
+
 exports[`Generates function call 1`] = `"add(1, sub(2, 3))"`;
 
 exports[`Generates if expressions 1`] = `"eq(1, 2) ? 3 : 4"`;
