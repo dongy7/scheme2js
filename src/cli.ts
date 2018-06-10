@@ -1,4 +1,6 @@
-import meow from 'meow'
+import * as meow from 'meow'
+import * as fs from 'fs'
+import compile from './index'
 
 const cli = meow(
   `
@@ -21,3 +23,19 @@ const cli = meow(
     },
   }
 )
+
+if (cli.input.length === 0) {
+  console.error('Specify input file path')
+  process.exit(1)
+}
+
+const srcPath = cli.input[0]
+const outPath = cli.flags.o
+const code = fs.readFileSync(srcPath, 'utf8')
+const output = compile(code)
+
+if (outPath !== undefined) {
+  fs.writeFileSync(outPath, output)
+} else {
+  console.log(output)
+}
