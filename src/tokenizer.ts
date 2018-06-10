@@ -55,6 +55,31 @@ const tokenizer = (input: string) => {
       continue
     }
 
+    const opRe = /[\+\-\*\/\<\>\=0-9]/
+    const negRe = /^\-[0-9]+/
+    if (opRe.test(ch)) {
+      let val = ''
+      while (ch !== undefined && opRe.test(ch)) {
+        val += ch
+        ch = input[++pos]
+      }
+
+      // check if this is a negative number e.g. -123
+      if (negRe.test(val)) {
+        tokens.push({
+          type: 'number',
+          value: val,
+        })
+      } else {
+        tokens.push({
+          type: 'op',
+          value: val,
+        })
+      }
+
+      continue
+    }
+
     throw new TypeError(`Unknown character: ${ch}`)
   }
 

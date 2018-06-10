@@ -46,6 +46,15 @@ Array [
 ]
 `;
 
+exports[`tokenizes negative number 1`] = `
+Array [
+  Object {
+    "type": "number",
+    "value": "-123",
+  },
+]
+`;
+
 exports[`tokenizes number 1`] = `
 Array [
   Object {
