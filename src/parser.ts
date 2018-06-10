@@ -6,6 +6,7 @@ import DefineExpression from './ast/DefineExpression'
 import IfExpression from './ast/IfExpression'
 import CallExpression from './ast/CallExpression'
 import LambdaExpression from './ast/LambdaExpression'
+import ParameterList from './ast/ParameterList'
 
 class Parser {
   private tokens: Token[]
@@ -100,7 +101,7 @@ class Parser {
     }
   }
 
-  private parseParams(): SymbolLiteral[] {
+  private parseParams(): ParameterList {
     // accept (
     this.acceptIt()
     const params = []
@@ -113,7 +114,7 @@ class Parser {
 
     // accept )
     this.acceptIt()
-    return params
+    return new ParameterList(params)
   }
 
   private parseSymbol(): SymbolLiteral {

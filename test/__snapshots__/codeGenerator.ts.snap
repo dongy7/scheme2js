@@ -1,5 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Generates correct anonymous function definition 1`] = `"var add = function(x, y) { return x + y }"`;
+
+exports[`Generates correct anonymous function expression 1`] = `"function(x, y) { return x + y }"`;
+
 exports[`Generates correct binary expression 1`] = `"1 + 2"`;
 
 exports[`Generates function call 1`] = `"add(1, sub(2, 3))"`;

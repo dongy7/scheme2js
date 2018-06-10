@@ -5,6 +5,7 @@ import Program from '../ast/Program'
 import BinaryExpression from '../ast/BinaryExpression'
 import CallExpression from '../ast/CallExpression'
 import { isValidOp } from '../utils'
+import LambdaExpression from '../ast/LambdaExpression'
 
 const visitor: Visitor = {
   visitCallExpression(node) {
@@ -48,6 +49,11 @@ const visitor: Visitor = {
   },
   visitSymbolLiteral(node) {
     return node
+  },
+  visitLambdaExpression(node) {
+    const params = node.params.visit(this)
+    const body = node.body.visit(this)
+    return new LambdaExpression(params as ParameterListNode, body)
   },
 }
 

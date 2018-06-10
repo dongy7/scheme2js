@@ -6,6 +6,8 @@ import IfExpression from './ast/IfExpression'
 import NumericLiteral from './ast/NumericLiteral'
 import SymbolLiteral from './ast/SymbolLiteral'
 import BinaryExpression from './ast/BinaryExpression'
+import LambdaExpression from './ast/LambdaExpression'
+import ParameterList from './ast/ParameterList'
 
 const codeGenerator = (node: ASTNode): string => {
   if (node instanceof Program) {
@@ -36,6 +38,16 @@ const codeGenerator = (node: ASTNode): string => {
       ' ' +
       codeGenerator(node.right)
     )
+  } else if (node instanceof LambdaExpression) {
+    return (
+      'function(' +
+      codeGenerator(node.params) +
+      ') { return ' +
+      codeGenerator(node.body) +
+      ' }'
+    )
+  } else if (node instanceof ParameterList) {
+    return node.params.map(codeGenerator).join(', ')
   } else {
     throw new TypeError()
   }

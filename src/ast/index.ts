@@ -5,6 +5,7 @@ import IfExpression from './IfExpression'
 import NumericLiteral from './NumericLiteral'
 import Program from './Program'
 import SymbolLiteral from './SymbolLiteral'
+import ParameterList from './ParameterList'
 
 export default {
   BinaryExpression,
@@ -14,4 +15,5 @@ export default {
   NumericLiteral,
   Program,
   SymbolLiteral,
+  ParameterList,
 }

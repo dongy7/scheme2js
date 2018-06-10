@@ -30,3 +30,19 @@ it('Generates correct binary expression', () => {
   const jsAst = Compiler.transformer(ast, js)
   expect(Compiler.codeGenerator(jsAst)).toMatchSnapshot()
 })
+
+it('Generates correct anonymous function expression', () => {
+  const tokens = Compiler.tokenizer('(lambda (x y) (+ x y))')
+  const parser = new Compiler.parser(tokens)
+  const ast = parser.parse()
+  const jsAst = Compiler.transformer(ast, js)
+  expect(Compiler.codeGenerator(jsAst)).toMatchSnapshot()
+})
+
+it('Generates correct anonymous function definition', () => {
+  const tokens = Compiler.tokenizer('(define add (lambda (x y) (+ x y)))')
+  const parser = new Compiler.parser(tokens)
+  const ast = parser.parse()
+  const jsAst = Compiler.transformer(ast, js)
+  expect(Compiler.codeGenerator(jsAst)).toMatchSnapshot()
+})

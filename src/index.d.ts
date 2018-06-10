@@ -20,6 +20,7 @@ interface Visitor {
   visitProgram(node: ProgramNode): ASTNode
   visitDefineExpression(node: DefineExpr): ASTNode
   visitIfExpression(node: IfExpr): ASTNode
+  visitLambdaExpression(node: LambdaExpr): ASTNode
 }
 
 interface AST {
@@ -65,8 +66,12 @@ interface BinExpr extends AST {
 }
 
 interface LambdaExpr extends AST {
-  params: ASTNode[]
+  params: ParameterListNode
   body: ASTNode
+}
+
+interface ParameterListNode extends AST {
+  params: SymbolNode[]
 }
 
 type Expression =
@@ -86,3 +91,4 @@ type ASTNode =
   | IfExpr
   | BinExpr
   | LambdaExpr
+  | ParameterListNode

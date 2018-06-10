@@ -116,14 +116,16 @@ Program {
           "value": "+",
         },
       },
-      "params": Array [
-        SymbolLiteral {
-          "value": "x",
-        },
-        SymbolLiteral {
-          "value": "y",
-        },
-      ],
+      "params": ParameterList {
+        "params": Array [
+          SymbolLiteral {
+            "value": "x",
+          },
+          SymbolLiteral {
+            "value": "y",
+          },
+        ],
+      },
     },
   ],
 }
