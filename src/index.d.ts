@@ -53,7 +53,7 @@ interface IfExpr extends INode {
   alt: ASTNode
 }
 
-type Expression = CallExpr | DefineExpr | IfExpr
+type Expression = CallExpr | DefineExpr | IfExpr | SymbolNode | NumberNode
 
 type ASTNode =
   | NumberNode

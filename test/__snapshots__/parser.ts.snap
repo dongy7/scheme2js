@@ -1,5 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`parses define expression 1`] = `
+Object {
+  "body": Array [
+    Object {
+      "ref": Object {
+        "type": "SymbolLiteral",
+        "value": "a",
+      },
+      "type": "DefineExpr",
+      "value": Object {
+        "type": "NumberLiteral",
+        "value": "1",
+      },
+    },
+  ],
+  "type": "Program",
+}
+`;
+
 exports[`parses empty program 1`] = `
 Object {
   "body": Array [],

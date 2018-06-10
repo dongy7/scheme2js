@@ -17,3 +17,9 @@ it('parses nested function call', () => {
   const parser = new Compiler.parser(tokens)
   expect(parser.parse()).toMatchSnapshot()
 })
+
+it('parses define expression', () => {
+  const tokens = Compiler.tokenizer('(define a 1)')
+  const parser = new Compiler.parser(tokens)
+  expect(parser.parse()).toMatchSnapshot()
+})
