@@ -1,4 +1,4 @@
-const parser = (tokens: Token[]) => {
+const parser = (tokens: Token[]): ASTNode => {
   let pos = 0
 
   const walk = (): ASTNode => {

@@ -13,25 +13,39 @@ interface Token {
   value: string
 }
 
-interface NumberNode {
+interface INode {
+  name?: string
+  context?: ASTNode[]
+}
+
+interface NumberNode extends INode {
   type: 'NumberLiteral'
   value: string
 }
 
-interface SymbolNode {
+interface SymbolNode extends INode {
   type: 'SymbolLiteral'
   value: string
 }
 
-interface CallNode {
+interface CallNode extends INode {
   type: 'CallExpression'
-  name: string
+  // name: string
   params: ASTNode[]
 }
 
-type ASTNode = NumberNode | SymbolNode | CallNode
-
-interface ProgramNode {
+interface ProgramNode extends INode {
   type: 'Program'
   body: ASTNode[]
+}
+
+type ASTNode = NumberNode | SymbolNode | CallNode | ProgramNode
+
+interface Visitor {
+  enter: (INode: ASTNode, parent: ASTNode | null) => void
+  exit?: (INode: ASTNode, parent: ASTNode | null) => void
+}
+
+interface Visitors {
+  [type: string]: Visitor
 }

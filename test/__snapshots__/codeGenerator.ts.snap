@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Generates function call 1`] = `"add(1, sub(2, 3))"`;
