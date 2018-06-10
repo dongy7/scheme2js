@@ -18,18 +18,18 @@ const transformer = (ast: ASTNode): ASTNode => {
         parent!.context!.push(node)
       },
     },
-    CallExpression: {
-      enter: (node, parent) => {
-        const expr: CallNode = {
-          type: 'CallExpression',
-          name: node.name,
-          params: [],
-        }
+    // CallExpression: {
+    //   enter: (node, parent) => {
+    //     const expr: CallExpr = {
+    //       type: 'CallExpression',
+    //       proc: node.proc,
+    //       params: [],
+    //     }
 
-        node.context = expr.params
-        parent!.context!.push(node)
-      },
-    },
+    //     node.context = expr.params
+    //     parent!.context!.push(node)
+    //   },
+    // },
   }
   const rootContext = newAst.body
   traverser(ast, visitors)

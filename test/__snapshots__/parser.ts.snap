@@ -11,7 +11,6 @@ exports[`parses function call 1`] = `
 Object {
   "body": Array [
     Object {
-      "name": "add",
       "params": Array [
         Object {
           "type": "NumberLiteral",
@@ -22,6 +21,10 @@ Object {
           "value": "2",
         },
       ],
+      "proc": Object {
+        "type": "SymbolLiteral",
+        "value": "add",
+      },
       "type": "CallExpression",
     },
   ],
@@ -33,14 +36,12 @@ exports[`parses nested function call 1`] = `
 Object {
   "body": Array [
     Object {
-      "name": "add",
       "params": Array [
         Object {
           "type": "NumberLiteral",
           "value": "1",
         },
         Object {
-          "name": "sub",
           "params": Array [
             Object {
               "type": "NumberLiteral",
@@ -51,9 +52,17 @@ Object {
               "value": "3",
             },
           ],
+          "proc": Object {
+            "type": "SymbolLiteral",
+            "value": "sub",
+          },
           "type": "CallExpression",
         },
       ],
+      "proc": Object {
+        "type": "SymbolLiteral",
+        "value": "add",
+      },
       "type": "CallExpression",
     },
   ],

@@ -28,9 +28,10 @@ interface SymbolNode extends INode {
   value: string
 }
 
-interface CallNode extends INode {
+interface CallExpr extends INode {
   type: 'CallExpression'
   // name: string
+  proc: SymbolNode
   params: ASTNode[]
 }
 
@@ -39,7 +40,28 @@ interface ProgramNode extends INode {
   body: ASTNode[]
 }
 
-type ASTNode = NumberNode | SymbolNode | CallNode | ProgramNode
+interface DefineExpr extends INode {
+  type: 'DefineExpr'
+  ref: SymbolNode
+  value: ASTNode
+}
+
+interface IfExpr extends INode {
+  type: 'IfExpr'
+  test: ASTNode
+  conseq: ASTNode
+  alt: ASTNode
+}
+
+type Expression = CallExpr | DefineExpr | IfExpr
+
+type ASTNode =
+  | NumberNode
+  | SymbolNode
+  | CallExpr
+  | ProgramNode
+  | DefineExpr
+  | IfExpr
 
 interface Visitor {
   enter: (INode: ASTNode, parent: ASTNode | null) => void

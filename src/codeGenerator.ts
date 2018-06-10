@@ -3,14 +3,26 @@ const codeGenerator = (node: ASTNode): string => {
     case 'Program':
       return node.body.map(codeGenerator).join('\n')
     case 'CallExpression':
-      return node.name + '(' + node.params.map(codeGenerator).join(', ') + ')'
+      return (
+        node.proc.value + '(' + node.params.map(codeGenerator).join(', ') + ')'
+      )
     case 'SymbolLiteral':
       return node.value
     case 'NumberLiteral':
       return node.value
+    case 'DefineExpr':
+      return codeGenerator(node.ref) + ' = ' + codeGenerator(node.value)
+    case 'IfExpr':
+      return (
+        codeGenerator(node.test) +
+        ' ? ' +
+        codeGenerator(node.conseq) +
+        ' : ' +
+        codeGenerator(node.alt)
+      )
+
     default:
-      console.log(node)
-      throw new TypeError(node.type)
+      throw new TypeError()
   }
 }
 

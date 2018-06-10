@@ -1,5 +1,3 @@
-// Helper types
-
 const tokenizer = (input: string) => {
   let pos = 0
   const tokens: Token[] = []
