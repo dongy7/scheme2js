@@ -30,6 +30,9 @@ const codeGenerator = (node: ASTNode): string => {
   } else if (node instanceof NumericLiteral) {
     return node.value
   } else if (node instanceof SymbolLiteral) {
+    if (node.value === '=') {
+      return '=='
+    }
     return node.value
   } else if (node instanceof BinaryExpression) {
     return (

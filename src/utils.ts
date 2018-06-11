@@ -1,5 +1,5 @@
 export const isValidOp = (token: string) => {
-  return ['+', '-', '*', '/', '<', '>', '<=', '>=', '=='].indexOf(token) >= 0
+  return ['+', '-', '*', '/', '<', '>', '<=', '>=', '='].indexOf(token) >= 0
 }
 
 export const isBooleanOp = (token: string) => {

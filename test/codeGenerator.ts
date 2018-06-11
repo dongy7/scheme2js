@@ -34,3 +34,13 @@ it('Generates correct binary expression with parenthesis', () => {
   const code = '(* (+ 1 2) 3)'
   expect(compile(code)).toMatchSnapshot()
 })
+
+it('Generates correct boolean expression with parenthesis', () => {
+  const code = '(and (> x 5) (< x 10))'
+  expect(compile(code)).toMatchSnapshot()
+})
+
+it('Generates correct equality expression', () => {
+  const code = '(= 1 2)'
+  expect(compile(code)).toMatchSnapshot()
+})

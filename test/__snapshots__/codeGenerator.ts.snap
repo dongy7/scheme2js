@@ -8,6 +8,10 @@ exports[`Generates correct binary expression 1`] = `"1 + 2"`;
 
 exports[`Generates correct binary expression with parenthesis 1`] = `"(1 + 2) * 3"`;
 
+exports[`Generates correct boolean expression with parenthesis 1`] = `"(x > 5) && (x < 10)"`;
+
+exports[`Generates correct equality expression 1`] = `"1 == 2"`;
+
 exports[`Generates function call 1`] = `"add(1, sub(2, 3))"`;
 
 exports[`Generates if expressions 1`] = `"eq(1, 2) ? 3 : 4"`;
