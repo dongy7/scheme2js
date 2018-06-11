@@ -21,6 +21,7 @@ interface Visitor {
   visitDefineExpression(node: DefineExpr): ASTNode
   visitIfExpression(node: IfExpr): ASTNode
   visitLambdaExpression(node: LambdaExpr): ASTNode
+  visitFuncDefineExpression(node: FunctionDefineExpr): ASTNode
 }
 
 interface AST {
@@ -51,6 +52,12 @@ interface ProgramNode extends AST {
 interface DefineExpr extends AST {
   ref: SymbolNode
   value: ASTNode
+}
+
+interface FunctionDefineExpr extends AST {
+  ref: SymbolNode
+  params: ParameterListNode
+  body: ASTNode
 }
 
 interface IfExpr extends AST {
@@ -98,3 +105,4 @@ type ASTNode =
   | LambdaExpr
   | ParameterListNode
   | BooleanExpr
+  | FunctionDefineExpr

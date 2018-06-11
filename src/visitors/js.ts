@@ -7,6 +7,8 @@ import CallExpression from '../ast/CallExpression'
 import { isValidOp, isBooleanOp } from '../utils'
 import LambdaExpression from '../ast/LambdaExpression'
 import BooleanExpression from '../ast/BooleanExpression'
+import FuncDefineExpression from '../ast/FuncDefineExpression'
+import ParameterList from '../ast/ParameterList'
 
 const visitor: Visitor = {
   visitCallExpression(node) {
@@ -34,6 +36,17 @@ const visitor: Visitor = {
     const value = node.value.visit(this)
 
     return new DefineExpression(ref as SymbolLiteral, value)
+  },
+  visitFuncDefineExpression(node) {
+    const func = node.ref.visit(this)
+    const params = node.params.visit(this)
+    const body = node.body.visit(this)
+
+    return new FuncDefineExpression(
+      func as SymbolLiteral,
+      params as ParameterList,
+      body
+    )
   },
   visitIfExpression(node) {
     const test = node.test.visit(this)

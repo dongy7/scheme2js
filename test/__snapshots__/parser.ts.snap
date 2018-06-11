@@ -71,6 +71,38 @@ Program {
 }
 `;
 
+exports[`parses function definition 1`] = `
+Program {
+  "body": Array [
+    FuncDefineExpression {
+      "body": CallExpression {
+        "params": Array [
+          SymbolLiteral {
+            "value": "x",
+          },
+          NumericLiteral {
+            "value": "1",
+          },
+        ],
+        "proc": SymbolLiteral {
+          "value": "+",
+        },
+      },
+      "params": ParameterList {
+        "params": Array [
+          SymbolLiteral {
+            "value": "x",
+          },
+        ],
+      },
+      "ref": SymbolLiteral {
+        "value": "plusOne",
+      },
+    },
+  ],
+}
+`;
+
 exports[`parses if expression 1`] = `
 Program {
   "body": Array [

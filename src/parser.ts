@@ -7,6 +7,7 @@ import IfExpression from './ast/IfExpression'
 import CallExpression from './ast/CallExpression'
 import LambdaExpression from './ast/LambdaExpression'
 import ParameterList from './ast/ParameterList'
+import FuncDefineExpression from './ast/FuncDefineExpression'
 
 class Parser {
   private tokens: Token[]
@@ -52,10 +53,36 @@ class Parser {
         switch (this.currToken.value) {
           case 'define':
             this.acceptIt()
-            const symbol = this.parseSymbol()
-            const expr = this.parseExpr()
-            this.accept('paren')
-            return new DefineExpression(symbol, expr)
+            if (this.currToken.type === 'paren') {
+              // function definition
+              this.acceptIt()
+              const funcName = this.parseSymbol()
+              const funcParams = []
+
+              while (
+                this.currToken.type !== 'paren' ||
+                (this.currToken.type === 'paren' &&
+                  // @ts-ignore
+                  this.currToken.value !== ')')
+              ) {
+                funcParams.push(this.parseSymbol())
+              }
+
+              // accept )
+              this.acceptIt()
+              const funcBody = this.parseExpr()
+
+              return new FuncDefineExpression(
+                funcName,
+                new ParameterList(funcParams),
+                funcBody
+              )
+            } else {
+              const symbol = this.parseSymbol()
+              const expr = this.parseExpr()
+              this.accept('paren')
+              return new DefineExpression(symbol, expr)
+            }
           case 'if':
             this.acceptIt()
             const test = this.parseExpr()

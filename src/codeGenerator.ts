@@ -9,6 +9,7 @@ import BinaryExpression from './ast/BinaryExpression'
 import LambdaExpression from './ast/LambdaExpression'
 import ParameterList from './ast/ParameterList'
 import BooleanExpression from './ast/BooleanExpression'
+import FuncDefineExpression from './ast/FuncDefineExpression'
 
 const codeGenerator = (node: ASTNode): string => {
   if (node instanceof Program) {
@@ -64,6 +65,16 @@ const codeGenerator = (node: ASTNode): string => {
     )
   } else if (node instanceof ParameterList) {
     return node.params.map(codeGenerator).join(', ')
+  } else if (node instanceof FuncDefineExpression) {
+    return (
+      'var ' +
+      codeGenerator(node.ref) +
+      ' = function(' +
+      codeGenerator(node.params) +
+      ') { return ' +
+      codeGenerator(node.body) +
+      ' }'
+    )
   } else {
     throw new TypeError()
   }
