@@ -11,7 +11,8 @@
     "prepublish": "npm run build"
   },
   "files": [
-    "dist"
+    "dist",
+    "polyfills"
   ],
   "bin": {
     "s2j": "dist/cli.js"
