@@ -89,6 +89,20 @@ JavaScript
 1 + 2
 ```
 
+### Boolean Expressions
+
+Lisp
+
+```lisp
+(and (x > 5) (x < 10))
+```
+
+JavaScript
+
+```js
+(x > 5) && (x < 10)
+```
+
 ### Lambda Expressions
 
 Lisp
