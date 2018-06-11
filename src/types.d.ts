@@ -74,6 +74,11 @@ interface ParameterListNode extends AST {
   params: SymbolNode[]
 }
 
+interface BooleanExpr extends AST {
+  op: SymbolNode
+  params: ASTNode[]
+}
+
 type Expression =
   | CallExpr
   | DefineExpr
@@ -92,3 +97,4 @@ type ASTNode =
   | BinExpr
   | LambdaExpr
   | ParameterListNode
+  | BooleanExpr

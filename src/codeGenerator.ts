@@ -8,6 +8,7 @@ import SymbolLiteral from './ast/SymbolLiteral'
 import BinaryExpression from './ast/BinaryExpression'
 import LambdaExpression from './ast/LambdaExpression'
 import ParameterList from './ast/ParameterList'
+import BooleanExpression from './ast/BooleanExpression'
 
 const codeGenerator = (node: ASTNode): string => {
   if (node instanceof Program) {
@@ -32,12 +33,24 @@ const codeGenerator = (node: ASTNode): string => {
     return node.value
   } else if (node instanceof BinaryExpression) {
     return (
-      stringifyBinSubExp(node.left) +
+      stringifySubExp(node.left) +
       ' ' +
       codeGenerator(node.op) +
       ' ' +
-      stringifyBinSubExp(node.right)
+      stringifySubExp(node.right)
     )
+  } else if (node instanceof BooleanExpression) {
+    const op = node.op.value
+    switch (op) {
+      case 'and':
+        return node.params.map(stringifySubExp).join(' && ')
+      case 'or':
+        return node.params.map(stringifySubExp).join(' || ')
+      case 'not':
+        return `!${codeGenerator(node.params[0])}`
+      default:
+        throw new SyntaxError(`Unexpected boolean op: ${op}`)
+    }
   } else if (node instanceof LambdaExpression) {
     return (
       'function(' +
@@ -53,7 +66,7 @@ const codeGenerator = (node: ASTNode): string => {
   }
 }
 
-const stringifyBinSubExp = (expr: ASTNode) => {
+const stringifySubExp = (expr: ASTNode) => {
   const code = codeGenerator(expr)
 
   // If expression is an atom just return string representation

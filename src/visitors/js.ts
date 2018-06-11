@@ -4,8 +4,9 @@ import SymbolLiteral from '../ast/SymbolLiteral'
 import Program from '../ast/Program'
 import BinaryExpression from '../ast/BinaryExpression'
 import CallExpression from '../ast/CallExpression'
-import { isValidOp } from '../utils'
+import { isValidOp, isBooleanOp } from '../utils'
 import LambdaExpression from '../ast/LambdaExpression'
+import BooleanExpression from '../ast/BooleanExpression'
 
 const visitor: Visitor = {
   visitCallExpression(node) {
@@ -13,6 +14,11 @@ const visitor: Visitor = {
       const leftExpr = node.params[0].visit(this)
       const rightExpr = node.params[1].visit(this)
       return new BinaryExpression(leftExpr, rightExpr, node.proc)
+    }
+
+    if (isBooleanOp(node.proc.value)) {
+      const params = node.params.map(param => param.visit(this))
+      return new BooleanExpression(node.proc, params)
     }
 
     const proc = node.proc.visit(this)
