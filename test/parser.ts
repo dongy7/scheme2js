@@ -47,3 +47,9 @@ it('parses lambda expressions', () => {
   const parser = new Compiler.parser(tokens)
   expect(parser.parse()).toMatchSnapshot()
 })
+
+it('parses lambda expressions with single parameter', () => {
+  const tokens = Compiler.tokenizer('(lambda x (+ x 1)')
+  const parser = new Compiler.parser(tokens)
+  expect(parser.parse()).toMatchSnapshot()
+})

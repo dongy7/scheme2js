@@ -131,6 +131,35 @@ Program {
 }
 `;
 
+exports[`parses lambda expressions with single parameter 1`] = `
+Program {
+  "body": Array [
+    LambdaExpression {
+      "body": CallExpression {
+        "params": Array [
+          SymbolLiteral {
+            "value": "x",
+          },
+          NumericLiteral {
+            "value": "1",
+          },
+        ],
+        "proc": SymbolLiteral {
+          "value": "+",
+        },
+      },
+      "params": ParameterList {
+        "params": Array [
+          SymbolLiteral {
+            "value": "x",
+          },
+        ],
+      },
+    },
+  ],
+}
+`;
+
 exports[`parses nested function call 1`] = `
 Program {
   "body": Array [

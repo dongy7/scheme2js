@@ -102,18 +102,26 @@ class Parser {
   }
 
   private parseParams(): ParameterList {
-    // accept (
-    this.acceptIt()
     const params = []
-    while (
-      this.currToken.type !== 'paren' ||
-      (this.currToken.type === 'paren' && this.currToken.value !== ')')
-    ) {
+
+    // multiple parameters
+    if (this.currToken.type === 'paren') {
+      // accept (
+      this.acceptIt()
+      while (
+        this.currToken.type !== 'paren' ||
+        (this.currToken.type === 'paren' && this.currToken.value !== ')')
+      ) {
+        params.push(this.parseSymbol())
+      }
+
+      // accept )
+      this.acceptIt()
+    } else {
+      // single parameter
       params.push(this.parseSymbol())
     }
 
-    // accept )
-    this.acceptIt()
     return new ParameterList(params)
   }
 
