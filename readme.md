@@ -104,3 +104,15 @@ function(x, y) {
   return x + y
 }
 ```
+
+## Polyfills
+
+### Pairs
+
+To add support for `cons`, `car`, `cdr` procedures, specify the `--pairs` or `-p` option.
+
+```sh
+$ s2j script.scm --pairs
+```
+
+This will add the required polyfill and define it globally.
