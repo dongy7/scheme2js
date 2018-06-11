@@ -2,8 +2,8 @@
   "name": "s2j",
   "version": "1.0.0",
   "description": "Scheme to JavaScript transpiler",
-  "repository": "https://github.com/dongy7/s2j",
-  "author": "Dong Yeop Lee <dongy7@gmail.com>",
+  "repository": "https://github.com/dongy7/scheme2js",
+  "author": "Dong Yeop Lee <dong@dongyeop.com>",
   "license": "MIT",
   "devDependencies": {
     "@types/jest": "^23.0.0",
@@ -16,7 +16,13 @@
     "typescript": "^2.9.1"
   },
   "scripts": {
-    "test": "jest"
+    "build": "tsc",
+    "test": "jest",
+    "prepublish": "npm run build"
+  },
+  "files": ["dist"],
+  "bin": {
+    "s2j": "dist/cli.js"
   },
   "jest": {
     "moduleFileExtensions": [
