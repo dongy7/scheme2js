@@ -32,11 +32,11 @@ const codeGenerator = (node: ASTNode): string => {
     return node.value
   } else if (node instanceof BinaryExpression) {
     return (
-      codeGenerator(node.left) +
+      stringifyBinSubExp(node.left) +
       ' ' +
       codeGenerator(node.op) +
       ' ' +
-      codeGenerator(node.right)
+      stringifyBinSubExp(node.right)
     )
   } else if (node instanceof LambdaExpression) {
     return (
@@ -50,6 +50,18 @@ const codeGenerator = (node: ASTNode): string => {
     return node.params.map(codeGenerator).join(', ')
   } else {
     throw new TypeError()
+  }
+}
+
+const stringifyBinSubExp = (expr: ASTNode) => {
+  const code = codeGenerator(expr)
+
+  // If expression is an atom just return string representation
+  if (expr instanceof NumericLiteral || expr instanceof SymbolLiteral) {
+    return code
+  } else {
+    // otherwise wrap expression in parenthesis
+    return `(${code})`
   }
 }
 

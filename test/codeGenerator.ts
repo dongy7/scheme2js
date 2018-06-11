@@ -29,3 +29,8 @@ it('Generates correct anonymous function definition', () => {
   const code = '(define add (lambda (x y) (+ x y)))'
   expect(compile(code)).toMatchSnapshot()
 })
+
+it('Generates correct binary expression with parenthesis', () => {
+  const code = '(* (+ 1 2) 3)'
+  expect(compile(code)).toMatchSnapshot()
+})
