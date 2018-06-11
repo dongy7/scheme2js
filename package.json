@@ -1,6 +1,6 @@
 {
   "name": "scheme2js",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Scheme to JavaScript transpiler",
   "repository": "https://github.com/dongy7/scheme2js",
   "author": "Dong Yeop Lee <dong@dongyeop.com>",
