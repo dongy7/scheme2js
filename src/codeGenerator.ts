@@ -67,9 +67,9 @@ const codeGenerator = (node: ASTNode): string => {
     return node.params.map(codeGenerator).join(', ')
   } else if (node instanceof FuncDefineExpression) {
     return (
-      'var ' +
+      'function ' +
       codeGenerator(node.ref) +
-      ' = function(' +
+      '(' +
       codeGenerator(node.params) +
       ') { return ' +
       codeGenerator(node.body) +

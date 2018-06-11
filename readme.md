@@ -58,6 +58,22 @@ JavaScript
 var foo = 1
 ```
 
+### Function Definition
+
+List
+
+```lisp
+(define (plusOne x) (+ x 1))
+```
+
+JavaScript
+
+```js
+function plusOne(x) {
+  return x + 1
+}
+```
+
 ### Conditional Expressions
 
 Lisp
