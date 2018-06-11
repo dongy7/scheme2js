@@ -58,6 +58,23 @@ JavaScript
 var foo = 1
 ```
 
+### Conditional Expressions
+
+Lisp
+
+```lisp
+(if
+  (eq a b)
+  c
+  d)
+```
+
+JavaScript
+
+```js
+eq(a, b) ? c : d
+```
+
 ### Binary Expressions
 
 Lisp
