@@ -1,6 +1,6 @@
 {
   "name": "scheme2js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Scheme to JavaScript transpiler",
   "repository": "https://github.com/dongy7/scheme2js",
   "author": "Dong Yeop Lee <dong@dongyeop.com>",
@@ -10,7 +10,9 @@
     "test": "jest",
     "prepublish": "npm run build"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "bin": {
     "s2j": "dist/cli.js"
   },
