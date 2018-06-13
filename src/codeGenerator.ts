@@ -10,6 +10,7 @@ import LambdaExpression from './ast/LambdaExpression'
 import ParameterList from './ast/ParameterList'
 import BooleanExpression from './ast/BooleanExpression'
 import FuncDefineExpression from './ast/FuncDefineExpression'
+import { indentLines } from './utils'
 
 const codeGenerator = (node: ASTNode): string => {
   if (node instanceof Program) {
@@ -59,9 +60,9 @@ const codeGenerator = (node: ASTNode): string => {
     return (
       'function(' +
       codeGenerator(node.params) +
-      ') { return ' +
-      codeGenerator(node.body) +
-      ' }'
+      ') {\n' +
+      indentLines('return ' + codeGenerator(node.body)) +
+      '\n}'
     )
   } else if (node instanceof ParameterList) {
     return node.params.map(codeGenerator).join(', ')
@@ -71,11 +72,12 @@ const codeGenerator = (node: ASTNode): string => {
       codeGenerator(node.ref) +
       '(' +
       codeGenerator(node.params) +
-      ') { ' +
-      node.internalDefs.map(codeGenerator) +
-      'return ' +
-      codeGenerator(node.value) +
-      ' }'
+      ') {' +
+      '\n' +
+      indentLines(node.internalDefs.map(codeGenerator).join('\n')) +
+      '\n' +
+      indentLines('return ' + codeGenerator(node.value)) +
+      '\n}'
     )
   } else {
     throw new TypeError()
