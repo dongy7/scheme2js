@@ -40,12 +40,14 @@ const visitor: Visitor = {
   visitFuncDefineExpression(node) {
     const func = node.ref.visit(this)
     const params = node.params.visit(this)
-    const body = node.body.visit(this)
+    const internalDefs = node.internalDefs.map(def => def.visit(this))
+    const value = node.value.visit(this)
 
     return new FuncDefineExpression(
       func as SymbolLiteral,
       params as ParameterList,
-      body
+      internalDefs,
+      value
     )
   },
   visitIfExpression(node) {

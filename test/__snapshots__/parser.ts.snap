@@ -75,7 +75,18 @@ exports[`parses function definition 1`] = `
 Program {
   "body": Array [
     FuncDefineExpression {
-      "body": CallExpression {
+      "internalDefs": Array [],
+      "params": ParameterList {
+        "params": Array [
+          SymbolLiteral {
+            "value": "x",
+          },
+        ],
+      },
+      "ref": SymbolLiteral {
+        "value": "plusOne",
+      },
+      "value": CallExpression {
         "params": Array [
           SymbolLiteral {
             "value": "x",
@@ -87,16 +98,6 @@ Program {
         "proc": SymbolLiteral {
           "value": "+",
         },
-      },
-      "params": ParameterList {
-        "params": Array [
-          SymbolLiteral {
-            "value": "x",
-          },
-        ],
-      },
-      "ref": SymbolLiteral {
-        "value": "plusOne",
       },
     },
   ],
@@ -124,6 +125,63 @@ Program {
         ],
         "proc": SymbolLiteral {
           "value": "eq",
+        },
+      },
+    },
+  ],
+}
+`;
+
+exports[`parses internal definition 1`] = `
+Program {
+  "body": Array [
+    FuncDefineExpression {
+      "internalDefs": Array [
+        FuncDefineExpression {
+          "internalDefs": Array [],
+          "params": ParameterList {
+            "params": Array [
+              SymbolLiteral {
+                "value": "y",
+              },
+            ],
+          },
+          "ref": SymbolLiteral {
+            "value": "add",
+          },
+          "value": CallExpression {
+            "params": Array [
+              SymbolLiteral {
+                "value": "x",
+              },
+              SymbolLiteral {
+                "value": "y",
+              },
+            ],
+            "proc": SymbolLiteral {
+              "value": "+",
+            },
+          },
+        },
+      ],
+      "params": ParameterList {
+        "params": Array [
+          SymbolLiteral {
+            "value": "x",
+          },
+        ],
+      },
+      "ref": SymbolLiteral {
+        "value": "addOne",
+      },
+      "value": CallExpression {
+        "params": Array [
+          SymbolLiteral {
+            "value": "x",
+          },
+        ],
+        "proc": SymbolLiteral {
+          "value": "add",
         },
       },
     },

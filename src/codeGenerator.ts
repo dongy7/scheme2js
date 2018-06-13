@@ -71,8 +71,10 @@ const codeGenerator = (node: ASTNode): string => {
       codeGenerator(node.ref) +
       '(' +
       codeGenerator(node.params) +
-      ') { return ' +
-      codeGenerator(node.body) +
+      ') { ' +
+      node.internalDefs.map(codeGenerator) +
+      'return ' +
+      codeGenerator(node.value) +
       ' }'
     )
   } else {

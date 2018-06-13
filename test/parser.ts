@@ -59,3 +59,12 @@ it('parses function definition', () => {
   const parser = new Compiler.parser(tokens)
   expect(parser.parse()).toMatchSnapshot()
 })
+
+it('parses internal definition', () => {
+  const tokens = Compiler.tokenizer(`
+(define (addOne x)
+  (define (add y) (+ x y))
+  (add x))`)
+  const parser = new Compiler.parser(tokens)
+  expect(parser.parse()).toMatchSnapshot()
+})

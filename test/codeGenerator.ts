@@ -44,3 +44,12 @@ it('Generates correct equality expression', () => {
   const code = '(= 1 2)'
   expect(compile(code)).toMatchSnapshot()
 })
+
+it('Generates function definition with internal defintions', () => {
+  const code = `
+    (define (addOne x)
+      (define (add y) (+ x y))
+      (add x))
+  `
+  expect(compile(code)).toMatchSnapshot()
+})

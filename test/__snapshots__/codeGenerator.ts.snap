@@ -14,6 +14,8 @@ exports[`Generates correct equality expression 1`] = `"1 == 2"`;
 
 exports[`Generates function call 1`] = `"add(1, sub(2, 3))"`;
 
+exports[`Generates function definition with internal defintions 1`] = `"function addOne(x) { function add(y) { return x + y }return add(x) }"`;
+
 exports[`Generates if expressions 1`] = `"eq(1, 2) ? 3 : 4"`;
 
 exports[`Generates variable declaration 1`] = `"var a = 1"`;

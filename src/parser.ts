@@ -70,16 +70,26 @@ class Parser {
 
               // accept )
               this.acceptIt()
-              const funcBody = this.parseExpr()
+              const bodyExprs = this.parseFuncDefineBody()
+              // accept )
+              this.acceptIt()
+
+              const value = bodyExprs.pop()
+
+              if (value === undefined) {
+                throw new SyntaxError('Empty define')
+              }
 
               return new FuncDefineExpression(
                 funcName,
                 new ParameterList(funcParams),
-                funcBody
+                bodyExprs,
+                value
               )
             } else {
               const symbol = this.parseSymbol()
               const expr = this.parseExpr()
+
               this.accept('paren')
               return new DefineExpression(symbol, expr)
             }
@@ -126,6 +136,20 @@ class Parser {
       default:
         throw new SyntaxError()
     }
+  }
+
+  private parseFuncDefineBody(): ASTNode[] {
+    const defs = []
+
+    if (this.currToken.type !== 'paren') {
+      defs.push(this.parseSymbol())
+    } else {
+      while (this.currToken.type === 'paren' && this.currToken.value === '(') {
+        defs.push(this.parseExpr())
+      }
+    }
+
+    return defs
   }
 
   private parseParams(): ParameterList {

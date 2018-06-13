@@ -1,12 +1,19 @@
 export default class FuncDefineExpression implements FunctionDefineExpr {
   public ref: SymbolNode
   public params: ParameterListNode
-  public body: ASTNode
+  public internalDefs: ASTNode[]
+  public value: ASTNode
 
-  constructor(ref: SymbolNode, params: ParameterListNode, body: ASTNode) {
+  constructor(
+    ref: SymbolNode,
+    params: ParameterListNode,
+    internalDefs: ASTNode[],
+    value: ASTNode
+  ) {
     this.ref = ref
     this.params = params
-    this.body = body
+    this.internalDefs = internalDefs
+    this.value = value
   }
 
   public visit(v: Visitor): ASTNode {

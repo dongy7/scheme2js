@@ -57,7 +57,8 @@ interface DefineExpr extends AST {
 interface FunctionDefineExpr extends AST {
   ref: SymbolNode
   params: ParameterListNode
-  body: ASTNode
+  internalDefs: ASTNode[]
+  value: ASTNode
 }
 
 interface IfExpr extends AST {
