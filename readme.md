@@ -2,8 +2,14 @@
 
 > Compiler for transpiling Scheme to JavaScript
 
+## Demo
+
+You can see the live demo [here](https://dongyeop.com/sandbox/).
+
+## Installation
+
 ```sh
-$ npm install -g scheme2js
+$ npm install scheme2js
 ```
 
 ## CLI
