@@ -45,7 +45,12 @@ it('Generates correct equality expression', () => {
   expect(compile(code)).toMatchSnapshot()
 })
 
-it('Generates function definition with internal defintions', () => {
+it('Generates function definition', () => {
+  const code = `(define (foo x) (+ x 1))`
+  expect(compile(code)).toMatchSnapshot()
+})
+
+it('Generates function definition with internal definitions', () => {
   const code = `
     (define (addOne x)
       (define (add y) (+ x y))

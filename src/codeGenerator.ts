@@ -67,16 +67,22 @@ const codeGenerator = (node: ASTNode): string => {
   } else if (node instanceof ParameterList) {
     return node.params.map(codeGenerator).join(', ')
   } else if (node instanceof FuncDefineExpression) {
+    let body = '\n'
+
+    if (node.internalDefs.length > 0) {
+      body += indentLines(node.internalDefs.map(codeGenerator).join('\n'))
+      body += '\n'
+    }
+
+    body += indentLines('return ' + codeGenerator(node.value))
+
     return (
       'function ' +
       codeGenerator(node.ref) +
       '(' +
       codeGenerator(node.params) +
       ') {' +
-      '\n' +
-      indentLines(node.internalDefs.map(codeGenerator).join('\n')) +
-      '\n' +
-      indentLines('return ' + codeGenerator(node.value)) +
+      body +
       '\n}'
     )
   } else {

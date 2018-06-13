@@ -22,10 +22,15 @@ exports[`Generates correct equality expression 1`] = `"1 == 2"`;
 
 exports[`Generates function call 1`] = `"add(1, sub(2, 3))"`;
 
-exports[`Generates function definition with internal defintions 1`] = `
+exports[`Generates function definition 1`] = `
+"function foo(x) {
+  return x + 1
+}"
+`;
+
+exports[`Generates function definition with internal definitions 1`] = `
 "function addOne(x) {
   function add(y) {
-    
     return x + y
   }
   return add(x)
