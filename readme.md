@@ -66,7 +66,7 @@ var foo = 1
 
 ### Function Definition
 
-List
+Lisp
 
 ```lisp
 (define (plusOne x) (+ x 1))
@@ -77,6 +77,27 @@ JavaScript
 ```js
 function plusOne(x) {
   return x + 1
+}
+```
+
+### Nested Definitions
+
+Lisp
+
+```lisp
+(define (addOne x)
+  (define (add y) (+ x y))
+  (add 1))
+```
+
+JavaScript
+
+```js
+function addOne(x) {
+  function add(y) {
+    return x + y
+  }
+  return add(1)
 }
 ```
 
